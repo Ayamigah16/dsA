@@ -14,6 +14,10 @@ outputs => intesction array(intesectionArray)
 
 Target :: get compelexity of O(N)
 
+Steps:
+    1. store values of larger arrays in hash tables
+    2. check if values of smaller array are keys in the hashtables
+        if yes, add to intersection set
 
 """
 
