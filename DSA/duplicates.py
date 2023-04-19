@@ -23,7 +23,9 @@ def stringDuplicate(array):
                 return array[element]
         i += 1
     return ("No duplicate")
-            
+
+ 
+           
 def mainStringDuplicate(array):
     # storing array
     hashtable = {}
