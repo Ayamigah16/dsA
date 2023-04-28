@@ -7,7 +7,7 @@ occurs first. The function should have an efficiency of O(N).
 """
 def firstNonDuplicateCharacter(string):
     hashtable = {}
-    count = 1
+    
     for value in string:
         if value not in hashtable.keys():
             hashtable[value] = 1

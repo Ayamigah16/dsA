@@ -266,4 +266,156 @@ def isSubset2(array1,array2):
             return False
     return True
 
+# creating a stck class
+class Stack:
+    def __init__(self):
+        self.data = []
+        
+    def push(self,element):
+        self.data.append(element)
+        
+    def pop(self):
+        self.data.pop()
+        
+    def read(self):
+        self.data[:-1]
+
+
+class Linter:
+    def __init__(self):
+        # We use a simple array to serve as our stack:
+        self.stack = Stack()
+        
+    def lint(self, text):
+        # declaring inner functions
+        def is_opening_brace(char):
+            char in ["(", "[", "{"]
+            
+        def is_closing_brace(char):
+            char in [")", "]", "}"]
+        
+        def is_not_a_match(opening_brace, closing_brace):
+            match_brace = {"(":")", "[":"]", "{":"}"}            
+              
+            if (opening_brace, closing_brace) not in match_brace.items():
+                return "Unmatched braces"
+              
+        # lint main       
+        for char in text:
+            # If the character is an opening brace:
+            if is_opening_brace(char):
+                # We push it onto the stack:
+                self.stack.push()
+                print("Buggy")
+            # If the character is a closing brace:
+            elif is_closing_brace(char):
+                # Pop from stack:
+                popped_opening_brace = self.stack.pop()
+                
+                # If the stack was empty, so what we popped was nil,
+                # it means that an opening brace is missing:
+                if popped_opening_brace == None:
+                    return (char + "doesn't have opening braces")
+                
+                print("Buggy")
+                # If the popped opening brace doesn't match the
+                # current closing brace, we produce an error:
+                is_not_a_match(popped_opening_brace, char)
+                    
+            # If we get to the end of line, and the stack isn't empty:
+            if self.stack.read():
+                return (self.stack.read() + "does not have closing braces")
+            
+        # Return true if line has no errors:
+        return True
     
+        
+#linter = Linter()
+#print(linter.lint("( var x = { y: [1, 2, 3]  )"))
+
+
+# Recursion
+# factorial_1.........(top - down approach)
+def factorial(number):
+    if number == 1:
+        return 1
+    else:
+        return number * factorial(number - 1)
+
+# factorial_2 with extra parameters......(bottom - up approach)
+def fact(number, i = 0, product = 1):
+    if i > number:
+        return product
+    return fact(number, i + 1, product * i)
+
+# countdown timer
+def countdown(number):
+    print(number)
+    
+    if (number == 0):
+        return
+    else:
+        countdown(number - 1)
+
+#countdown(7)
+
+# doubling an array
+## using a loop
+def double_array(array):
+    index = 0
+    while (index < len(array)):
+        array[index] *= 2
+        index += 1
+    return array
+    
+#print(double_array([2, 3, 5, 6, 8]))
+
+## using recursion
+def doubleArray(array, index = 0):
+    # adding the base case
+    if index >= len(array):
+        return
+    
+    array[index] *= 2
+    doubleArray(array, index + 1)
+    return array
+
+#print(doubleArray([3, 4, 6, 7]))
+
+## array sum
+def sumArray(array):
+    # Base case: only one element in the array:
+    if len(array) == 1:
+        return array[0]
+    
+    return array[0] + sumArray(array[1:len(array)])
+
+#print(sumArray([3,5,6]))
+
+## STRING REVERSAL
+def reverseString(string):
+    # Base case: only one element in the array:
+    if len(string) == 1:
+        return string[0]   
+    return reverseString(string[1:len(string)]) + string[0]
+
+#print(reverseString("book"))
+
+## count_x function ===> a function that counts the number of character "x" in a string
+def count_x(string):
+    '''if len(string) == 1:
+        if string[0] == "x":
+            return 1
+        else:
+            return 0'''
+    # simplifying the above; an empty string will have no "x"
+    if len(string) == 0:
+        return 0
+    
+    if string[0] == "x":
+        return 1 + count_x(string[1: len(string)])
+    else:
+        return count_x(string[1:len(string)])
+    
+    
+#print(count_x("axbsxxxd"))
