@@ -19,6 +19,4 @@ def missingAlphabet(array):
         if alpha not in hashtable.keys():
             return 
     
-    
-
 print(missingAlphabet("the quick brown box jumps over a lazy dog"))
