@@ -416,6 +416,65 @@ def count_x(string):
         return 1 + count_x(string[1: len(string)])
     else:
         return count_x(string[1:len(string)])
-    
-    
+        
 #print(count_x("axbsxxxd"))
+
+
+## the stair case problem
+"""Let’s say we have a staircase of N steps, and a person has the ability to climb
+one, two, or three steps at a time. How many different possible “paths” can
+someone take to reach the top? Write a function that will calculate this for N
+steps"""
+def number_of_paths(n):
+    # the base case
+    if n < 0:
+        return 0
+    elif n == 1 or n == 0:
+        return 1
+        
+    return number_of_paths(n-1) + number_of_paths(n-2) + number_of_paths(n-3)
+
+#print(number_of_paths(4))
+
+## Anagram Generation
+"""We’re going to write a function that returns an array of all anagrams of a
+given string. An anagram is a reordering of all the characters within a string.
+For example, the anagrams of "abc" are:
+["abc",
+"acb",
+"bac",
+"bca",
+"cab",
+"cba"]"""
+def anagrams_of(string):
+    # Base case: if the string is only one character,
+    # return an array containing just a single-character string:
+    if len(string) == 1:
+        return string[0]
+    
+    # Create an array to hold all the anagrams:
+    collection = []
+    
+    # Find all anagrams of the substring from the second character until
+    # the end. For example, if the string is "abcd", the substring is "bcd",
+    # so we'll find all anagrams of "bcd":
+    substring_anagrams = anagrams_of(string[1:])
+    
+    # Iterate over each substring
+    for substring_anagram in substring_anagrams:
+        # Iterate over each index of the substring, from 0 until
+        # one index past the end of the string:
+        for index in range(len(substring_anagram) + 1):
+            # Create a copy of the substring anagram:
+            copy = substring_anagram[:]
+            
+            # Insert the first character of our string into the
+            # substring anagram copy. Where it will go depends
+            # on the index we're up to within this loop.
+            # Then, take this new string and add it to our collection of anagrams:
+            
+            new_copy = copy[:index] + string[0] + copy[index:]
+            collection.append(new_copy)
+    return collection
+print(anagrams_of("abc"))
+
