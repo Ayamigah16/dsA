@@ -476,5 +476,45 @@ def anagrams_of(string):
             new_copy = copy[:index] + string[0] + copy[index:]
             collection.append(new_copy)
     return collection
-print(anagrams_of("abc"))
+#print(anagrams_of("abc"))
 
+# Dynamic Programming ==> the process of optimizing recursive problems that have overlapping subproblems
+## Unnecessary recursive calls
+#def max(array):
+    print("recursion")
+    # Base case - if the array has only one element, it is
+    # by definition the greatest number:
+    if len(array) == 1:
+        return array[0]
+    
+    # Compare the first element with the greatest element
+    # from the remainder of the array. If the first element
+    # is greater, return it as the greatest number:
+    if array[0] > max(array[1:len(array)]):
+        return array[0]
+    else:
+        return max(array[1:len(array)])
+    
+    # there is ineficiency since the code has max(array[1:len(array)]) twice
+    
+    
+## a little fix for Big O
+def max(array):
+    # Base case - if the array has only one element, it is
+    # by definition the greatest number:
+    print("RECURSION")
+    if len(array) == 1:
+        return array[0]
+    
+    # Calculate the max of the remainder of the array
+    # and store it inside a variable:
+    max_of_remainder = max(array[1:len(array)])
+    
+    if array[0] > max_of_remainder:
+        return array[0]
+    else:
+        return max_of_remainder
+    
+    # the function has changed from O(2^n) to O(N)
+
+#print(max([1,2,3,4]))
