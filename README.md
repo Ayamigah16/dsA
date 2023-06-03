@@ -14,7 +14,7 @@ The following data structures are currently included in this repository:
 
 Each data structure has its own directory, with its corresponding implementation in a programming language of my choice.
 
-Algorithms
+Algorithms ( in the dsa.py )
 The following algorithms are currently included in this repository:
 
 Sorting Algorithms
@@ -36,7 +36,7 @@ To get started with this repository, you can clone it to your local machine usin
 
 bash
 Copy code
-git clone https://github.com/<your-username>/data-structures-and-algorithms.git
+git clone https://github.com/Ayamigah16/dsA.git
 You can then browse the different data structures and algorithms, and run them on your own machine to see how they work.
 
 Contributing
