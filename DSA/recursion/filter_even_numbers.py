@@ -20,6 +20,7 @@ def filter_even(array):
 print(filter_even([2, 4, 5, 6, 8, 11]))
 
 def filterEven(array):
+    print("Even")
     if len(array) < 1:
         return
     
@@ -31,5 +32,4 @@ def filterEven(array):
     
 
 spam = [1,2,4] + [5, 6, 7]
-print(spam)
 print(filterEven(spam))
