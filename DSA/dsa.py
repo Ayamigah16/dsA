@@ -266,19 +266,35 @@ def isSubset2(array1,array2):
             return False
     return True
 
-# creating a stck class
+# Stack algorithm
 class Stack:
     def __init__(self):
-        self.data = []
-        
-    def push(self,element):
-        self.data.append(element)
-        
+        self.stack = []
+
+    # Checks if the stack is empty.
+    def is_empty(self):
+        return len(self.stack) == 0
+
+    # Adds an item to the top of the stack
+    def push(self, item):
+        self.stack.append(item)
+
+    # Removes and returns the item from the top of the stack.
     def pop(self):
-        self.data.pop()
-        
-    def read(self):
-        self.data[:-1]
+        if self.is_empty():
+            return None
+        return self.stack.pop()
+
+    #  Returns the item from the top of the stack without removing it.
+    def peek(self):
+        if self.is_empty():
+            return None
+        return self.stack[-1]
+
+    # Returns the number of items in the stack.
+    def size(self):
+        return len(self.stack)
+
 
 
 class Linter:
@@ -332,6 +348,40 @@ class Linter:
         
 #linter = Linter()
 #print(linter.lint("( var x = { y: [1, 2, 3]  )"))
+# Linter function
+
+def linter(code):
+    stack = []
+
+    opening_brackets = ['(', '[', '{']
+    closing_brackets = [')', ']', '}']
+    bracket_pairs = {'(': ')', '[': ']', '{': '}'}
+
+    for char in code:
+        if char in opening_brackets:
+            stack.append(char)
+        elif char in closing_brackets:
+            if not stack:
+                return False  # Unbalanced closing bracket
+            top = stack.pop()
+            if bracket_pairs[top] != char:
+                return False  # Mismatched opening and closing brackets
+
+    return len(stack) == 0  # Check if all opening brackets are closed
+
+
+# # Example usage
+# code1 = "print('Hello, World!')"
+# print(linter(code1))  # Output: True
+
+# code2 = "print('Hello, World!'"
+# print(linter(code2))  # Output: False (missing closing bracket)
+
+# code3 = "print('Hello, World!'))"
+# print(linter(code3))  # Output: False (mismatched brackets)
+
+# code4 = "print('Hello, {World!}')"
+# print(linter(code4))  # Output: True
 
 
 # Recursion
@@ -541,6 +591,23 @@ def fib(n, memo):
 
     # dropped from O(2^N) to O(N), ie 2N -1
     
+
+## Bottom-Up Fibonacci
+def fib(n):
+    if n == 0:
+        return 0
     
+    # a and n start with the two first numbers in the series respectively
+    a = 0
+    b = 1
 
+    # Loop from 1 until n:
+    for i in range(1,n):
+        # a and b each move up to the next numbers in the series.
+        # Namely, b becomes the sum of b + a, and a becomes what b used to be.
+        # We utilize a temporary variable to make these changes:
+        temp = a
+        a = b
+        b = temp + a
 
+    return b
